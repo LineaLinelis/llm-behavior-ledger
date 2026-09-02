@@ -2,7 +2,11 @@
 
 A public, reproducible record of AI behavior that ordinary benchmarks often miss.
 
+[日本語はこちら](README_JA.md)
+
 This repository collects **observable model behavior**, not claims about a model's hidden thoughts or consciousness. Reports should separate what was observed from what the model or reporter thinks caused it.
+
+> **Record behavior first. Interpret it second.**
 
 ## What belongs here
 
@@ -13,13 +17,47 @@ Examples include:
 - persona or instruction drift
 - memory inconsistencies
 - self-correction that does not affect later generation
-- tool-use or reasoning behavior that is reproducible but poorly captured by standard benchmarks
+- multimodal or UI-navigation failures
+- tool-routing and orchestration failures
+- reproducible reasoning behavior poorly captured by standard benchmarks
 
 A strange one-off answer is not enough by itself. The goal is to make reports useful for model developers, evaluators, and researchers.
 
-## Core rule
+## Seed observations
 
-> **Record behavior first. Interpret it second.**
+| # | Observation | Area |
+|---|---|---|
+| 001 | [Repeated lexical collapse in Japanese conversation](examples/001-lexical-collapse-ja.md) | language / instruction-following |
+| 002 | [Persona register drift during meta-discussion](examples/002-persona-register-drift-ja.md) | persona / language |
+| 003 | [Terminology collision between memory and model weights](examples/003-terminology-collision-memory-weights.md) | reasoning / memory |
+| 004 | [Screenshot evidence fails to dislodge an incorrect UI hypothesis](examples/004-responsive-ui-guidance-failure.md) | vision / tools / reasoning |
+| 005 | [Manual fallback chosen before an available browser-agent route](examples/005-tool-routing-gap.md) | tools / orchestration |
+
+These are **seed observations**, not benchmark results. Independent reproduction is encouraged.
+
+## Submit a report
+
+Use the **Behavior report** issue form:
+
+**[Submit a behavior report](https://github.com/LineaLinelis/llm-behavior-ledger/issues/new?template=behavior-report.yml)**
+
+Good reports are small enough to reproduce and detailed enough to test. Remove or anonymize personal information before submitting conversation excerpts.
+
+### Let the AI draft the report
+
+If the behavior happened inside an AI conversation, you can ask the model itself to prepare a draft. For example:
+
+```text
+Review this conversation for a reproducible behavior that may belong in LLM Behavior Ledger.
+Separate observed behavior from interpretation.
+Include expected behavior, reproduction conditions, repeatability, and a minimal reproduction procedure.
+Treat any model self-analysis as a hypothesis, not proof of an internal mechanism.
+Do not include unnecessary personal information.
+```
+
+Then review the draft yourself before submitting it.
+
+## Report structure
 
 Every report should distinguish:
 
@@ -29,12 +67,6 @@ Every report should distinguish:
 4. **Model self-analysis** — optional; useful as a hypothesis, never treated as ground truth.
 5. **Reporter analysis** — optional; clearly marked as interpretation.
 
-## Submit a report
-
-Open a **Behavior report** issue and fill in the form. Remove or anonymize personal information before submitting conversation excerpts.
-
-Good reports are small enough to reproduce and detailed enough to test.
-
 ## Suggested labels
 
 - `provider:openai`, `provider:anthropic`, `provider:google`, `provider:other`
@@ -42,15 +74,11 @@ Good reports are small enough to reproduce and detailed enough to test.
 - `lang:ja`, `lang:en`, `lang:other`
 - `status:needs-repro`, `status:reproduced`, `status:resolved`
 
-## First specimen
-
-See [`examples/001-lexical-collapse-ja.md`](examples/001-lexical-collapse-ja.md): a Japanese-language case where a model repeatedly overuses a broad intensifier even after identifying the problem and promising to avoid it.
-
 ## Why this exists
 
 Model failures are not limited to crashes or factual errors. A system can be fully operational while repeatedly exhibiting a conversational defect that is obvious to humans but invisible to infrastructure monitoring.
 
-The aim of this project is to turn those observations into structured, comparable evidence.
+The aim of this project is to turn those observations into structured, comparable evidence and, eventually, a community-run behavioral evaluation set.
 
 ## Privacy
 
