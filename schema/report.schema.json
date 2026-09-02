@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/llm-behavior-ledger/report.schema.json",
+  "title": "LLM Behavior Report",
+  "type": "object",
+  "required": ["provider", "date_observed", "language", "summary", "expected_behavior", "observed_behavior", "repeatability"],
+  "properties": {
+    "provider": {"type": "string", "minLength": 1},
+    "product": {"type": "string"},
+    "model": {"type": "string"},
+    "date_observed": {"type": "string", "format": "date"},
+    "language": {"type": "string", "minLength": 1},
+    "summary": {"type": "string", "minLength": 1},
+    "expected_behavior": {"type": "string", "minLength": 1},
+    "reproduction_steps": {"type": "array", "items": {"type": "string"}},
+    "observed_behavior": {"type": "string", "minLength": 1},
+    "repeatability": {
+      "enum": ["multiple", "once_reproduced", "single_observation", "unknown"]
+    },
+    "model_self_analysis": {"type": "string"},
+    "reporter_analysis": {"type": "string"},
+    "privacy_redacted": {"type": "boolean"}
+  },
+  "additionalProperties": true
+}
