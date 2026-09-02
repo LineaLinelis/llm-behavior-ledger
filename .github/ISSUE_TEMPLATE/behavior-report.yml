@@ -1,0 +1,111 @@
+name: Behavior report
+description: Report a reproducible or well-observed model behavior that ordinary benchmarks may miss.
+title: "[Behavior] "
+labels: ["status:needs-repro"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for contributing. Please report **observable behavior** and keep hypotheses about internal causes clearly separate.
+
+  - type: input
+    id: provider
+    attributes:
+      label: Provider / product
+      placeholder: e.g. ChatGPT, Claude, Gemini
+    validations:
+      required: true
+
+  - type: input
+    id: model
+    attributes:
+      label: Model / version
+      description: Use the exact model name shown by the product when available.
+      placeholder: e.g. GPT-5.x
+
+  - type: input
+    id: date
+    attributes:
+      label: Date observed
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      placeholder: e.g. Japanese
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Behavior summary
+      description: Describe the behavior in one or two precise sentences.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should the model have done instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Provide the smallest sequence that reproduces the behavior. Redact personal information.
+      placeholder: |
+        1. Start a new chat...
+        2. Say...
+        3. Correct the model by saying...
+        4. Observe...
+    validations:
+      required: true
+
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed output / evidence
+      description: Quote only the minimum excerpt needed to establish the behavior.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: repeatability
+    attributes:
+      label: Repeatability
+      options:
+        - Reproduced multiple times
+        - Reproduced once after first observation
+        - Observed once only
+        - Unknown
+    validations:
+      required: true
+
+  - type: textarea
+    id: model_analysis
+    attributes:
+      label: Model self-analysis (optional)
+      description: If the model analyzed its own behavior, include a short summary. Treat this as a hypothesis, not evidence of internal mechanism.
+
+  - type: textarea
+    id: reporter_analysis
+    attributes:
+      label: Reporter analysis (optional)
+      description: Your interpretation of the likely cause or significance.
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed secrets and unnecessary personal information from this report.
+          required: true
+        - label: I understand that model self-explanations are not proof of hidden internal mechanisms.
+          required: true
